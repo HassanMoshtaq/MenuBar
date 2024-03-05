@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Side-Bar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <style>
+        /* Default styles */
+        .search-icon {
+            margin-left: 100px; /* Adjust the margin as needed */
+        }
+
+        /* Responsive styles for different types of websites */
+        @media only screen and (max-width: 600px) {
+            .search-icon {
+                margin-left: 5px; /* Adjust the margin for smaller screens */
+            }
+        }
+
+        @media only screen and (min-width: 601px) and (max-width: 1024px) {
+            .search-icon {
+                margin-left: 20px; /* Adjust the margin for tablets and small laptops */
+            }
+        }
+
+        @media only screen and (min-width: 1025px) {
+            .search-icon {
+                margin-left: 100px; /* Default margin for desktops */
+            }
+        }
+        .w3-border-right {
+            background-color: azure;
+            padding: 20px; /* Add padding to create space between sidebar elements */
+            max-height: 500px; /* Set max-height for sidebar */
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+        .w3-bar-item {
+            margin-bottom: 10px; /* Add margin bottom to move elements downwards */
+        }
+
+        /* Selected item style */
+        .selected {
+            background-color: green;
+            color: white;
+        }
+
+        /* Hover effect */
+        .w3-bar-item:hover {
+            background-color: green;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="w3-sidebar w3-bar-block w3-border-right" style="display:none;" id="mySidebar">
+        <button onclick="w3_close()" class="w3-bar-item w3-large"> Close  &times;</button>
+        <a href="About-Me.html" class="About-us-button" style="padding: 10px; font-size: larger; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" onclick="setSelectedItem(this)">About Me</a><br>
+        <a href="introduction-to.html" class="introduction-to-button" style="padding: 10px; font-size: larger; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" onclick="setSelectedItem(this)">Introduction to c++<br> </a>
+        <a href="Why-C++.html" class="Why-C++-button" style="padding: 10px; font-size: larger; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" onclick="setSelectedItem(this)">Starting With C++ <br> </a>
+        <a href="starting-with-c++.html" class="starting-with-c" style="padding: 10px; font-size: larger; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" onclick="setSelectedItem(this)"> Why c++   </a>
+    </div>
+
+    <!-- Page Content -->
+    <div class="w3-teal">
+        <!-- Sidebar Icon -->
+        <button class="w3-button w3-teal w3-xlarge" onclick="w3_open_sidebar()">☰</button>
+        <!-- Text "Programming With Hassan" -->
+        <span>&nbsp Programming With Hassan </span>
+        <!-- Search Icon -->
+        <i class="fas fa-search search-icon"></i>
+        <!-- Search Input Field -->
+        <input type="text" id="searchInput" class="search-icon" onkeyup="searchSidebar()" placeholder="Search in sidebar...">
+    </div>
+    <div class="picture">
+        <img src="technology-programming-c-code-wallpaper-preview.jpg" height="670px" width="1000px" alt="C++ Programming  ">
+    </div>
+
+    <!-- Whenever the user enters the element that wanna search in search box the element will be shown automatically
+    inside the side bar -->
+
+    <script>
+        function w3_open_sidebar() {
+            document.getElementById("mySidebar").style.display = "block";
+        }
+
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+
+        // To search the element from search-box.
+        function searchSidebar() {
+            var input, filter, sidebar, items, a, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            sidebar = document.getElementById("mySidebar");
+            items = sidebar.getElementsByTagName("a");
+
+            for (i = 0; i < items.length; i++) {
+                a = items[i];
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    items[i].style.display = "";
+                } else {
+                    items[i].style.display = "none";
+                }
+            }
+
+            // Show sidebar if the search box is not empty
+            if (filter.trim() !== "") {
+                w3_open_sidebar();
+            }
+        }
+
+        // To set the selected item style
+        function setSelectedItem(element) {
+            var items = document.getElementsByTagName("a");
+            for (var i = 0; i < items.length; i++) {
+                items[i].classList.remove("selected");
+            }
+            element.classList.add("selected");
+        }
+    </script>
+
+</body>
+
+</html>
